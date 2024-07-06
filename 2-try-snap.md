@@ -105,6 +105,7 @@ sudo snap refresh firefox
 Snap 은 기본적으로 자동 업데이트 이므로, 업데이트를 지연시키는 것도 가능합니다. `--hold` 를 이용하면 됩니다.
 ```bash
 snap refresh --hold=24h firefox
+snap refresh --hold= firefox # 이렇게 하면 영구 자동 업데이트 안함.
 ```
 
 Snap의 트랜젝션 업데이트 덕에 업데이트 한 버전을 이전 버전으로 되돌리는 것 또한 가능합니다. `revert` 로 직전 버전이나 특정 버전으로 되돌리기가 가능합니다.
@@ -175,3 +176,7 @@ firefox
 sudo snap connect firefox:wayland
 firefox
 ```
+
+## 프로그램 스냅샷 기능
+
+- [링크](https://snapcraft.io/docs/snapshots)
