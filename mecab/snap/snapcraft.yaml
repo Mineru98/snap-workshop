@@ -1,0 +1,45 @@
+name: mecab-ko
+base: core20
+version: '0.9.2'
+summary: MeCab Korean version
+description: |
+  MeCab is an open-source text segmentation library for use with text written 
+  in the Korean language. This package includes both MeCab and the Korean dictionary.
+
+grade: stable
+confinement: strict
+
+parts:
+  mecab:
+    plugin: autotools
+    source: https://bitbucket.org/eunjeon/mecab-ko/downloads/mecab-0.996-ko-0.9.2.tar.gz
+    source-type: tar
+    build-packages:
+      - build-essential
+      - autoconf
+    override-build: |
+      ./configure
+      make
+      make check
+      make install
+      snapcraftctl build
+
+  mecab-ko-dic:
+    plugin: autotools
+    source: https://bitbucket.org/eunjeon/mecab-ko-dic/downloads/mecab-ko-dic-2.1.1-20180720.tar.gz
+    source-type: tar
+    after: [mecab]
+    build-packages:
+      - build-essential
+      - automake
+    override-build: |
+      ./autogen.sh
+      ./configure
+      make
+      make install
+      snapcraftctl build
+
+apps:
+  mecab:
+    command: usr/local/bin/mecab
+    plugs: [home, network]
